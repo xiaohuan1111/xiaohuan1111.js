@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style>
+		ul,h2{
+			padding:0;
+			margin:0;
+		}
+		li{
+			list-style: none;
+		}
+		#list {
+			position: relative;
+			width:240px;
+			margin:0 auto;
+			border:1px solid #333;
+		}
+		#list li{}
+		#list ul{ display: none; }
+
+		#list h2{
+			width:240px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 20px;
+			text-indent: 24px;
+			border-bottom: 1px solid black;
+			background-color:rgb(255,255,0);
+		}
+		#list ul li{
+			width:240px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 18px;
+			text-indent:24px;
+			border-bottom: 1px solid #333;
+			
+		}
+		#list li .active{
+			background-color:rgb(0,255,255);
+		}
+		#list ul .hover{
+			background-color: rgba(0,255,255,0.2);
+		}
+	</style> 
+	<script type="text/javascript">
+		window.onload = function(){
+			var oUl = document.getElementById('list');
+			var aUl = oUl.getElementsByTagName('ul');
+			var aH2 = oUl.getElementsByTagName('h2');
+			var arrLi = [];
+			// 点击标题栏折叠标题下得列表 再次点击重新打开
+			//每次只能点亮一个标题，，在点亮之前，先将所有其他H2的active属性清空，再讲其他所有下拉列表ul的display属性设置为none;
+			for(var i=0;i<aH2.length;i++){
+				aH2[i].index = i;
+				aH2[i].onclick = function (){
+
+					if(this.className==''){
+						
+						for(var i=0;i<aH2.length;i++){
+							aUl[i].style.display = 'none';
+							aH2[i].className = '';
+						};
+
+						aUl[this.index].style.display = 'block';
+						this.className = 'active';
+					}else{
+						
+						aUl[this.index].style.display = 'none';
+						this.className = '';
+					};
+
+				};
+			};
+
+			// 找到标题下的所有li项目  并存放在arrLi数组中
+			for(var i=0;i<aUl.length;i++){
+				var aLi = aUl[i].getElementsByTagName('li');
+				for(var j=0;j<aLi.length;j++){
+					arrLi.push(aLi[j]);
+				};
+			};
+
+			//为li列表项添加点击事件
+			
+			for(var i=0;i<arrLi.length;i++){
+
+				arrLi[i].onclick = function(){
+
+					if(this.className==''){
+						//要求每次只能点击一个li元素，，在点亮之前将其他所有li的高亮hover属性清空
+						for(var i=0;i<arrLi.length;i++){
+							arrLi[i].className = '';
+						}
+						this.className = 'hover';
+					}else{
+						this.className = '';
+					}
+				}
+			}
+		};
+	</script> 
+</head>
+<body>
+	<ul id="list">
+		<li class="lis">
+			<h2>我的好友</h2>
+			<ul>
+				<li>黄牛</li>
+				<li>桃子</li>
+				<li>郑慧琛</li>
+				<li>大大</li>
+				<li>黄国安</li>
+			</ul>
+		</li>
+		<li class="lis">
+			<h2>朋友</h2>
+			<ul>
+				<li>初心</li>
+				<li>胡成玲</li>
+				<li>金</li>
+				<li>李国辉</li>
+				<li>梦娜</li>
+				<li>倩倩</li>
+			</ul>
+		</li>
+		<li class="lis">
+			<h2>同学</h2>
+			<ul>
+				<li>常延鹏</li>
+				<li>冬天里的萤火</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

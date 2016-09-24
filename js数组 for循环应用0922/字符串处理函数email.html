@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+
+		div{
+			position: relative;
+			margin:0 auto;
+			margin-top: 240px;
+			width:400px;
+			height: 200px;
+			background-color: navy;
+			color: white;
+			line-height: 40px;
+			font-size: 20px;
+			text-align: center;
+			
+		}
+
+		}
+		#ipt1 {
+			width:240px;
+			height: 100px;
+			color: red;
+			line-height: 60px;
+			font-size: 20px;
+		}
+		/*#box button {
+			width:60px;
+			height: 30px;
+			font-size: 20px;
+			margin-top: 30px;
+			color:navy;
+			font-weight: bold;
+		}*/
+	</style>
+	<script type="text/javascript">
+
+	window.onload = function(){
+
+		var oIpt = document.getElementById('ipt1');
+		var oBtn = document.getElementById('btn1');
+		oBtn.onclick = function(){
+			var email = oIpt.value;
+			oIpt.value ='';
+			var last4c = email.substr(-4,4);
+			var preStr = email.slice(0,-4);
+			var index = preStr.indexOf('@',0);
+			var upt = email.indexOf(' ',0);
+			var strArr = preStr.split('@');
+			var id = strArr[0];
+			var pro = strArr[1];
+
+			//alert(pro.length);
+			if(typeof(email)!='string'){
+				alert('您输入的不是字符串，请重新输入');
+			}else if(email.length==0||email.length<8){
+				alert('长度不符');
+			}else if(last4c !='.com'){
+				alert('您输入的email后四位不符合要求，请输入.com')
+			}else if(index==-1){
+				alert('无@');
+			}else if (upt!=-1){
+				alert('请不要输入空格');
+			}else if( id.length==0 ||pro.length==0){
+				alert('您输入的格式不正确');
+			}else{
+				alert('您的邮箱地址是'+email+'<br>'+'恭喜您注册成功!');
+			};
+		};
+	};	
+	</script>
+</head>
+<body>
+	<div id="box">
+		请输入您的邮箱地址:<br>
+		<input id="ipt1" type="text"><br>
+		<button id="btn1" type="button">确认</button>
+	</div>
+</body>
+</html>

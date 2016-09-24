@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		body{
+			margin:0;
+			padding:0;
+			background-image: url(bj.jpg);
+			background-size: 1440px 800px;
+		}
+		#show{
+			position: relative;
+			margin: 0 auto;
+			margin-top: 60px;
+			width:1000px;
+			height:500px;
+			text-align: center;
+		}
+		input{
+			font-size: 10px;
+			border-radius: 5px;
+			border:0;
+		}
+		#back {
+			position:absolute;
+			left:20px; 
+		}
+		#next {
+			position:absolute;
+			left:80px; 
+		}
+		#class1{
+			position: absolute;
+			bottom:20px;
+			left:20px;
+			width:570px;
+			height: 440px;
+			background-color: white;
+
+		}
+		#class2{
+			position: absolute;
+			bottom:20px;
+			right:20px;
+			background-color:white;
+			width:370px;
+			height: 440px;
+
+		}
+		#img1{
+			margin-top: 20px;
+			margin-left: 30px;
+			width:510px;
+			height: 320px;
+			text-align: center;
+			line-height: 320px;
+			background-image: url('im10.jpg');
+			background-size: 510px 320px;
+		}
+		span{
+			position: absolute;
+			bottom:20px;
+			left:0;
+			width:150px;
+			height: 30px;
+			line-height: 30px;
+			font-size:10px;
+		}
+		#img2{
+
+			margin-top: 20px;
+			margin-left: 20px;
+			width:330px;
+			height: 320px;
+			text-align: center;
+			line-height: 320px;
+			background-image: url('im20.jpg');
+			background-size: 330px 320px;
+		}
+	</style>
+	<script type="text/javascript" >
+	window.onload = function(){
+		var aImage1 = ['im10.jpg','im11.jpg','im12.jpg','im13.jpg','im14.jpg','im15.jpg','im16.jpg'];
+		var len1 = aImage1.length;
+		var aImage2 = ['im20.jpg','im21.jpg','im22.jpg','im23.jpg','im24.jpg','im25.jpg'];
+		var len2 = aImage2.length;
+		var oNext = document.getElementById('next');
+		var oBack = document.getElementById('back');
+		var oImg1 = document.getElementById('img1');
+		var oImg2 = document.getElementById('img2');
+		var oSpan1 = document.getElementById('span1');
+		var oSpan2 = document.getElementById('span2');
+		var oP1 = document.getElementById('p1');
+		var oP2 = document.getElementById('p2');
+		var i=0,j=0;
+	//初始化
+
+		oSpan1.innerHTML = i +1+ '/'+len1;
+		oP1.innerHTML = '第一组 第'+(i+1)+'张';
+		oSpan2.innerHTML = j +1+ '/'+len2;
+		oP2.innerHTML = '第二组 第'+(j+1)+'张';
+	//鼠标经过时上一组 和 下一组 按钮高亮显示
+			oNext.onmouseover = function(){
+				this.style.backgroundColor = 'yellow';
+			};
+			oBack.onmouseover = function(){
+				this.style.backgroundColor = 'yellow';
+			};
+			oNext.onmouseout = function(){
+				this.style.backgroundColor = '';
+			};
+			oBack.onmouseout = function(){
+				this.style.backgroundColor = '';
+			};
+
+	// 点击图片进行轮番切换
+
+	//函数showim1 实现第一组 显示图片 切换文字
+		function showim1(){
+			oImg1.style.backgroundImage = 'url("'+aImage1[i]+'")';
+			oSpan1.innerHTML = i +1+ '/'+len1;
+			oP1.innerHTML = '第一组 第'+(i+1)+'张';
+		};
+	//函数showim2 实现第一组 显示图片 切换文字
+		function showim2(){
+			oImg2.style.backgroundImage = 'url("'+aImage2[j]+'")';
+			oSpan2.innerHTML = j +1+ '/'+len2;
+			oP2.innerHTML = '第二组 第'+(j+1)+'张';
+		};
+
+	//函数im1实现第一组图片递增显示
+		function add1(){
+			if(i<len1-1){
+				i++;
+				showim1();
+			}else{
+				i=0;
+				showim1();
+			};
+		};
+		//函数im11实现第一组图片递减显示
+		function loss1(){
+			if(i>0){
+				i--;
+				showim1();
+			}else{
+				i=len1-1;
+				showim1();
+			};
+		};
+		//函数im2 实现第二组图片递增显示
+		function add2(){
+			if(j<len2-1){
+				j++;
+				showim2();
+			}else{
+				j=0;
+				showim2();
+			};
+		};
+		//函数im22 实现第二组图片递增显示
+		function loss2(){
+			if(j>0){
+				j--;
+				showim2();
+			}else{
+				j=len2-1;
+				showim2();
+			};
+		};
+		//点击第一组图片显示下一张图片，，到最后一张后回到第一张
+		oImg1.onclick = function(){
+			add1();
+		}
+
+		//点击第二组图片显示下一张图片，，到最后一张后回到第一张
+		oImg2.onclick = function (){
+			add2();
+		};
+
+		
+		//点击下一组按钮 两组同时显示下一张图片
+		oNext.onclick = function (){
+			add1();
+			add2();
+		};
+		oBack.onclick = function(){
+			loss1();
+			loss2();
+		}
+
+	};
+	</script>
+</head>
+<body>
+	<div>
+		
+		<div id="show">
+			<input id="back" type="button" value="上一组">
+			<input id="next" type="button" value="下一组">
+			<div id="class1" >
+				<div id="img1"></div>
+				<p id="p1"></p>
+				<span id="span1"></span>
+			</div>
+			<div id="class2" >
+				<div id="img2"></div>
+				<p id="p2"></p>
+				<span id="span2"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

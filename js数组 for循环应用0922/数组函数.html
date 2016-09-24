@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript">
+		var arr = ['a','b','b','c','v','v'];
+		//遍历数组元素的三种常用方法for  for in   .forEach();
+		// for (var i=0;i<arr.length;i++){
+		// 	alert(arr[i]);
+		// };
+
+		// for(var j in arr){
+		// 	alert(arr[j]);
+		// };
+
+		// arr.forEach(
+		// 	function(element,index){
+		// 		document.write(element+':'+index+'<br>');
+		// 	}
+		// );
+		var str = arr.join('-');//  将数组元素连接成一个字符串
+		//document.write(str);
+
+		var narr = str.split('-');  //字符串切割  字符串中出现'-'就切一个
+		narr.forEach(
+			function(element,index){
+				document.write(index+'*'+element+'<br>');
+
+			}
+		);
+		//alert(narr[0]);
+
+		var sourceArr = [14,42,35,54,35,6,37,58,19,20];
+		document.write('<br>'+sourceArr);
+		//.sort 参数a-b为 数组内的元素升序排列   b-a为数组内的而元素降序排列
+		var aortArr =sourceArr.sort(
+			function(a,b){
+				//document.write(a+'和'+b+'<br>');
+				var rs = a-b;
+				return rs;
+			}) ;
+		document.write('<br>'+aortArr+'<br>');
+
+		document.write(sourceArr.slice(0,5)+'<br>'); //截取数组中部分值
+	
+		sourceArr.push(1,2,3);  //在原数组的基础上向后添加元素；
+		document.write('<br>'+sourceArr);
+		var len = sourceArr.length;
+		//  .pop();将数组中的元素从后向前推出，，一次推出一个元素
+		for (var i=0;i<len-1;i++){
+			sourceArr.pop(); 
+		};
+		
+		//alert(sourceArr.length);
+		
+		sourceArr.push(13,42,33,23,22,2,2,5,65,2);
+		document.write('<br>'+sourceArr);
+		var index2 = sourceArr.indexOf(2,0);
+		document.write('<br>'+index2);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
